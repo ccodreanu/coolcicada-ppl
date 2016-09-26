@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import it.nettiva.coolcicada.push.PushType;
+
 public class DayTypeFragment extends Fragment implements View.OnClickListener {
 
     private View mView;
