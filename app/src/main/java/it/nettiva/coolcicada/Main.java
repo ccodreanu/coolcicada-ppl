@@ -1,8 +1,8 @@
 package it.nettiva.coolcicada;
 
 import android.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 public class Main extends AppCompatActivity {
 

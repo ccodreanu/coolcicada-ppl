@@ -11,35 +11,22 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import it.nettiva.coolcicada.DividerItemDecoration;
-import it.nettiva.coolcicada.ExerciseListAdapter;
 import it.nettiva.coolcicada.R;
+import it.nettiva.coolcicada.model.Exercise;
+import it.nettiva.coolcicada.model.ExerciseListAdapter;
+import it.nettiva.coolcicada.model.ExercisesProvider;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link PushType.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link PushType#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class PushType extends Fragment {
+public class PushTypeFragment extends Fragment {
 	private View mView;
 	private RecyclerView listPushExercises;
 
-	public PushType() {
+	public PushTypeFragment() {
 		// Required empty public constructor
 	}
 
-	/**
-	 * Use this factory method to create a new instance of
-	 * this fragment.
-	 *
-	 * @return A new instance of fragment PushType.
-	 */
-	// TODO: Rename and change types and number of parameters
-	public static PushType newInstance() {
-		PushType fragment = new PushType();
+	public static PushTypeFragment newInstance() {
+		PushTypeFragment fragment = new PushTypeFragment();
 
 		return fragment;
 	}
@@ -55,15 +42,12 @@ public class PushType extends Fragment {
 	}
 
 	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState) {
-		ArrayList<String> prez = new ArrayList<>();
-		prez.add("Lincoln");
-		prez.add("Washington");
-		prez.add("Quincy");
-		prez.add("JFK");
+	public void onViewCreated(final View view, Bundle savedInstanceState) {
+		ArrayList<Exercise> exercises = new ArrayList<>(ExercisesProvider.pushExercises());
+		ExerciseListAdapter exerciseListAdapter = new ExerciseListAdapter(exercises);
 
 		listPushExercises.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
-		listPushExercises.setAdapter(new ExerciseListAdapter(prez));
+		listPushExercises.setAdapter(exerciseListAdapter);
 		super.onViewCreated(view, savedInstanceState);
 	}
 }

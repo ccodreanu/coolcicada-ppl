@@ -9,30 +9,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import it.nettiva.coolcicada.push.PushType;
+import it.nettiva.coolcicada.pull.PullTypeFragment;
+import it.nettiva.coolcicada.push.PushTypeFragment;
 
 public class DayTypeFragment extends Fragment implements View.OnClickListener {
-
     private View mView;
     private Button btnPush;
+	private Button btnPull;
     private FragmentManager mFragmentManager;
 
     public DayTypeFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment.
-     *
-     * @return A new instance of fragment DayTypeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static DayTypeFragment newInstance() {
         DayTypeFragment fragment = new DayTypeFragment();
         return fragment;
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -40,8 +33,10 @@ public class DayTypeFragment extends Fragment implements View.OnClickListener {
         mFragmentManager = getFragmentManager();
 
         btnPush = (Button) mView.findViewById(R.id.btnPush);
+		btnPull = (Button) mView.findViewById(R.id.btnPull);
 
         btnPush.setOnClickListener(this);
+		btnPull.setOnClickListener(this);
 
         return mView;
     }
@@ -50,11 +45,20 @@ public class DayTypeFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnPush:
-                Log.d("DayType", "Button was pressed");
+                Log.d("DayType", "Push exercises were selected");
                 mFragmentManager.beginTransaction()
-                        .replace(R.id.activity_main, PushType.newInstance())
+                        .replace(R.id.activity_main, PushTypeFragment.newInstance())
                         .addToBackStack(null)
                         .commit();
+				break;
+
+			case R.id.btnPull:
+				Log.d("DayType", "Pull exercises were selected");
+				mFragmentManager.beginTransaction()
+						.replace(R.id.activity_main, PullTypeFragment.newInstance())
+						.addToBackStack(null)
+						.commit();
+				break;
         }
     }
 }
